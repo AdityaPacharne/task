@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package reportservice;
+option go_package = "github.com/AdityaPacharne/task;reportservice";
+
+service ReportService {
+    rpc GenerateReport(SendReportRequest) returns (SendReportResponse) {}
+    rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
+}
+
+message SendReportRequest {
+    string UserId = 1;
+}
+
+message SendReportResponse {
+    string ReportId = 1;
+    string ReportError = 2;
+}
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+    string Status = 1;
+}
+
