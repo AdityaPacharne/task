@@ -7,6 +7,7 @@ import (
     reportservice "github.com/AdityaPacharne/task/proto"
     "github.com/AdityaPacharne/task/server"
     "github.com/AdityaPacharne/task/cronjob"
+    "google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -21,7 +22,8 @@ func main() {
         Reports: make(map[string]string),
     }
 
-    reportservice.RegisterReportServiceServer(grpcServer, serverObject)
+    reportservice.RegisterReportServiceServer(grpcServer, serverObject);
+    reflection.Register(grpcServer);
 
     log.Println("Server runing on :9090");
 

@@ -26,3 +26,8 @@ func (s *ReportServer) GenerateReport(ct context.Context, request *reportservice
     return response, nil;
 }
 
+func (s *ReportServer) HealthCheck(ct context.Context, request *reportservice.HealthCheckRequest) (*reportservice.HealthCheckResponse, error){
+    return &reportservice.HealthCheckResponse{
+        Status: "Serving",
+    }, nil
+}
