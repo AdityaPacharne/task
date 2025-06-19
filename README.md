@@ -88,7 +88,3 @@ Expected output:
 * `google.golang.org/protobuf` – Protobuf support
 * `github.com/robfig/cron/v3` – Cron job scheduling
 
----
-
-*Bonus design question explanation can be added later.*
-
