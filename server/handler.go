@@ -8,18 +8,18 @@ import(
     reportservice "github.com/AdityaPacharne/task/proto"
 )
 
-type server struct {
+type ReportServer struct {
     reportservice.UnimplementedReportServiceServer
     mu sync.Mutex
-    reports map[string]string
+    Reports map[string]string
 }
 
-func (s *server) GenerateReport(ct context.Context, request *reportservice.SendReportRequest) (*reportservice.SendReportResponse, error){
-    reportId := "reportid_" + request.UserId + "_" + time.Now();
+func (s *ReportServer) GenerateReport(ct context.Context, request *reportservice.SendReportRequest) (*reportservice.SendReportResponse, error){
+    reportId := "reportid_" + request.UserId + "_" + time.Now().Format("150505");
     s.mu.Lock();
-    s.reports[request.UserId] = reportId;
+    s.Reports[request.UserId] = reportId;
     s.mu.Unlock();
-    log.Println("Generated report: ", request.UserID, " -> ", reportId);
+    log.Println("Generated report: ", request.UserId, " -> ", reportId);
     response := &reportservice.SendReportResponse{
         ReportId: reportId,
     }
