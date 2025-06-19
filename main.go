@@ -4,8 +4,9 @@ import (
     "log"
     "net"
     "google.golang.org/grpc"
-    reportservice "github.com/AdityaPacharne/task"
+    "github.com/AdityaPacharne/task/proto"
     "github.com/AdityaPacharne/task/server"
+    "github.com/AdityaPacharne/task/cronjob"
 )
 
 func main() {
@@ -23,7 +24,8 @@ func main() {
     reportservice.RegisterReportServiceServer(grcpServer, serverObject)
 
     log.Println("Server runing on :9090");
-    err := grcpServer.Serve(listener);
+
+    cronjob.StartCron(serverObject);
     if err := grcpServer.Serve(listener); err != nil {
         log.Fatal("Failed to serve: ", err);
     }

@@ -5,7 +5,7 @@ import(
     "log"
     "sync"
     "time"
-    reportservice "github.com/AdityaPacharne/task"
+    reportservice "github.com/AdityaPacharne/task/proto"
 )
 
 type server struct {
