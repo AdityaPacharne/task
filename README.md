@@ -1,3 +1,5 @@
+(AI was used for Readme generation)
+
 This Go-based microservice exposes a gRPC API to generate reports for users and periodically triggers reports using a cron job.
 
 * `GenerateReport(UserId)` → returns a unique `ReportId`
