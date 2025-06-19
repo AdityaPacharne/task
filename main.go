@@ -1,30 +1,12 @@
 package main
 
 import (
-    "context"
     "log"
     "net"
     "google.golang.org/grpc"
     reportservice "github.com/AdityaPacharne/task"
+    "github.com/AdityaPacharne/task/server"
 )
-
-type server struct {
-    reportservice.UnimplementedReportServiceServer
-    mu sync.Mutex
-    reports map[string]string
-}
-
-func (s *server) GenerateReport(ct context.Context, request *reportservice.SendReportRequest) (*reportservice.SendReportResponse, error){
-    reportId := "reportid_" + request.UserId + "_" + time.Now();
-    s.mu.Lock();
-    s.reports[request.UserId] = reportId;
-    s.mu.Unlock();
-    log.Println("Generated report: ", request.UserID, " -> ", reportId);
-    response := &reportservice.SendReportResponse{
-        ReportId: reportId,
-    }
-    return response, nil;
-}
 
 func main() {
     listencer, err := net.Listen("tcp", ":9090");
